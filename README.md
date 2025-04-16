@@ -1,5 +1,7 @@
 ## Config
-https://grok.com/share/c2hhcmQtMg%3D%3D_d46857cf-6db0-467c-afee-a30d8a81b83d
+
+### For a br0 bridge using static IP for host and VM's
+https://grok.com/share/c2hhcmQtMg%3D%3D_bae421d9-4a6f-4cb0-9401-489ce6c4064d
 
 ## ERRORS
 During init
