@@ -1,4 +1,4 @@
-# Build a complete infrastructurem to run API apps
+# Build a complete infrastructure to run API apps
 - mimic a cloud infrastructure
 - as secure as possible
 - as simple as possible for re-gen
