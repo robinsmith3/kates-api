@@ -1,8 +1,9 @@
 # Build a complete infrastructure to run API apps
 - mimic a cloud infrastructure
 - as secure as possible
-- as simple as possible for re-gen
-- use Teraform and Ansible
+- as simple as possible for re-gen - use Teraform and Ansible
+- pentest it with help from expert colleagues
+- the corolarly of crAPI, which is an API full of holes to test against
 
 ## Config
 
