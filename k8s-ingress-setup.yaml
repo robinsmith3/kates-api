@@ -1,0 +1,77 @@
+# Step 1: MetalLB Namespace
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: metallb-system
+---
+# Step 2: MetalLB Installation (Manifest for simplicity)
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: metallb-system
+  name: config
+data:
+  config: |
+    address-pools:
+    - name: default
+      protocol: layer2
+      addresses:
+      - 192.168.1.200-192.168.1.210  # Range of IPs for LoadBalancer
+---
+# Step 3: Sample Application Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-app
+  namespace: default
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: sample-app
+  template:
+    metadata:
+      labels:
+        app: sample-app
+    spec:
+      containers:
+      - name: sample-app
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+---
+# Step 4: Sample Application Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: sample-app-service
+  namespace: default
+spec:
+  selector:
+    app: sample-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+---
+# Step 5: Ingress Resource for Sample Application
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sample-ingress
+  namespace: default
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: toplard.servebeer.com  # Replace with your domain or test locally
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: sample-app-service
+            port:
+              number: 80
