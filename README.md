@@ -7,17 +7,14 @@
 
 ## Configs
 
-### Build an LXD installation for k8s cluster node VM's
-- Hosted on a bare metal lab server (Ubuntu 24.04)
-- https://grok.com/share/c2hhcmQtMg%3D%3D_d46857cf-6db0-467c-afee-a30d8a81b83d
-
-### Build a bridge br0 on the host using a static IP
-- for layer 2 load balancing (arp works between host and LB IP)
-- use router config to map static ip's on cluster nodes
-- do not try to explicitly set the cluster nodes to static IP with lxc config
+### Ubuntu 24.04 adding my local ethernet interface and LXD to a bridge
+- https://grok.com/share/c2hhcmQtMg%3D%3D_cd4ce28d-7494-4537-8e09-58da97076d9c
 - https://grok.com/share/c2hhcmQtMg%3D%3D_bae421d9-4a6f-4cb0-9401-489ce6c4064d
+- https://grok.com/chat/7c37c122-6af9-454c-9ead-4f61568c221a
 
 ### Build a 3 node k8s cluster from the LXC nodes
+### help me instal kubernetes on my system. I have a linux server with 3 LXD nodes running on it which I want to use for the cluster.
+- https://grok.com/share/c2hhcmQtMg%3D%3D_d46857cf-6db0-467c-afee-a30d8a81b83d
 
 ### Build the edge services infrastructure
 - add a MetalLB load balancer to serve the ingress
