@@ -55,6 +55,12 @@ mkdir -p $HOME/.kube
 lxc file pull node1/etc/kubernetes/admin.conf $HOME/.kube/config
 chown $(id -u):$(id -g) $HOME/.kube/config
 ``
-
+### For remote proxy and dashboard
+``
+ssh -L8001:localhost:8001 lab
+kubectl proxy --address=0.0.0.0 --port=8001
+kubectl -n kubernetes-dashboard create token admin-user
+http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/#/workloads?namespace=default
+``
 
 
