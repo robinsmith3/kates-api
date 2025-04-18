@@ -21,3 +21,17 @@
 - add an Nginx Ingress controller to route the apps
 - https://grok.com/share/c2hhcmQtMg%3D%3D_ab0ba4e3-176b-4e96-a5a4-63ab1c70ed42
 
+### Useful
+Enable IP forwarding and bridge settings
+And check kernel modules are there
+sudo modprobe overlay
+sudo modprobe br_netfilter
+echo -e "overlay\nbr_netfilter" | sudo tee -a /etc/modules
+lsmod | grep -e overlay -e br_netfilter
+cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
+net.bridge.bridge-nf-call-iptables  = 1
+net.bridge.bridge-nf-call-ip6tables = 1
+net.ipv4.ip_forward                 = 1
+EOF
+sudo sysctl --system
+
