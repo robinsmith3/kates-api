@@ -8,7 +8,8 @@
 ## Configs
 
 ### Build an LXD installation for k8s cluster node VM's
-Hosted on a bare metal lab server (Ubuntu 24.04)
+- Hosted on a bare metal lab server (Ubuntu 24.04)
+- https://grok.com/share/c2hhcmQtMg%3D%3D_d46857cf-6db0-467c-afee-a30d8a81b83d
 
 ### Build a bridge br0 on the host using a static IP
 - for layer 2 load balancing (arp works between host and LB IP)
