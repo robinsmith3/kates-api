@@ -7,6 +7,9 @@
 
 ## Configs
 
+# Launch the container
+lxc launch my-container
+
 ### Install LXD
 ``
 sudo snap install lxd
@@ -84,4 +87,6 @@ kubectl -n kubernetes-dashboard create token admin-user
 http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/#/workloads?namespace=default
 ``
 ### Delete k8S fully and re-add
+``
 https://grok.com/chat/ac96945c-6d98-4f93-a930-6e9861a60469
+``
