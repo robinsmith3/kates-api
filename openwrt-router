@@ -39,6 +39,20 @@ config interface 'WAN'
 	option password 'hg67889@btinternet.com'
 	option ipv6 'auto'
 
+config interface 'lan'
+	option device 'br-lan'
+	option proto 'static'
+	option ipaddr '192.168.1.1'
+	option netmask '255.255.255.0'
+
+# new dmz interface
+
+config interface 'dmz'
+	option proto 'static'
+	option device 'eth2'
+	option ipaddr '192.168.0.1'
+	option netmask '255.255.255.0'
+
 root@OpenWrt:~# cat /etc/config/firewall
 
 config defaults
@@ -63,9 +77,27 @@ config zone
 	option mtu_fix '1'
 	list network 'WAN'
 
+# new firewall zone
+config zone
+	option name 'dmz'
+	list network 'dmz'
+	option input 'REJECT'
+	option output 'ACCEPT'
+	option forward 'REJECT'
+
 config forwarding
 	option src 'lan'
 	option dest 'wan'
+
+# new inter-zone forwarding - dmz to wan
+config forwarding
+	option src 'dmz'
+	option dest 'wan'
+
+# new inter-zone forwarding - lan to dmz
+config forwarding
+	option src 'lan'
+	option dest 'dmz'
 
 config rule
 	option name 'Allow-DHCP-Renew'
@@ -205,6 +237,14 @@ config dhcp 'lan'
 	option ra_slaac '1'
 	list ra_flags 'managed-config'
 	list ra_flags 'other-config'
+
+# new dhcp for dmz zone
+config dhcp 'dmz'
+	option interface 'dmz'
+	option start '100'
+	option limit '150'
+	option leasetime '12h'
+	option dhcpv4 'server'
 
 config dhcp 'wan'
 	option interface 'wan'
